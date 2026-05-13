@@ -5,6 +5,7 @@ import java.util.UUID;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.plataforma.cursos.api_cursos.entities.CursoEntity;
-import com.service.CursoService;
+import com.plataforma.cursos.api_cursos.service.CursoService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/cursos")
+@CrossOrigin(origins = "http://localhost:8081")
 public class CursoController {
 
 
@@ -59,4 +61,9 @@ public class CursoController {
         return this.cursoService.executeToggleActive(id);
 
     }
+
+    @GetMapping("/{id}")
+    public CursoEntity findById(@PathVariable UUID id) {
+      return this.cursoService.executeFindById(id); 
+   }
 }
