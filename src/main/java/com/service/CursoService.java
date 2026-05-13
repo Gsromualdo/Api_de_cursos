@@ -1,4 +1,4 @@
-package com.service;
+package com.plataforma.cursos.api_cursos.service;
 
 import java.util.List;
 import java.util.UUID;
@@ -62,5 +62,10 @@ public class CursoService {
         throw new CourseNotFoundException();
     }
         this.cursoRepository.deleteById(id);
+    }
+
+    public CursoEntity executeFindById(UUID id) {
+    return this.cursoRepository.findById(id)
+        .orElseThrow(() -> new CourseNotFoundException());
     }
 }
